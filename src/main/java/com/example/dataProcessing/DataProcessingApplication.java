@@ -16,7 +16,11 @@ public class DataProcessingApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(KafkaTemplate<String,String> kafkaTemplate){
 		return args->{
-			kafkaTemplate.send("proccesedData","hello Kafka");
+
+			for(int i = 0; i <50; i++){
+
+				kafkaTemplate.send("proccesedData","hello Kafka" + i);
+			}
 		};
 	}
 
