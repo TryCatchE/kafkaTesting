@@ -30,7 +30,8 @@ public class DataProcessingApplication {
 
 			for(int i = 0; i <50; i++){
 
-				kafkaTemplate.send("proccesedData",repository.findAll().get(1).toString() + i);
+				kafkaTemplate.send("proccesedData","dataaaa");
+				// kafkaTemplate.send("proccesedData",repository.findAll().get(1).toString() + i);
 			}
 		};
 	}
