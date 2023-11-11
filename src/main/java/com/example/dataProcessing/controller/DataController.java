@@ -34,5 +34,13 @@ public class DataController {
 
     }
 
+    @GetMapping("/delete")
+    public void est(){
+
+        repository.deleteAll();
+
+    }
+
+
     
 }
