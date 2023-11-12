@@ -14,14 +14,14 @@ public class KafkaListeners {
 
     private DataRepository repository;
     
-    // public KafkaListeners(DataRepository repository) {
-    //     this.repository = repository;
-    // }
+    public KafkaListeners(DataRepository repository) {
+        this.repository = repository;
+    }
 
-    @KafkaListener(topics = "proccesedData", groupId = "proccesed_Data")
-    void listener(@Payload List<ProcessedData> dataList){
+    @KafkaListener(topics = "proccesedData", groupId = "proccesed_Data", containerFactory = "exampleKafkaListenerContainerFactory"  )
+    void listener(@Payload ProcessedData dataList){
 
-        // repository.save(dataList);
+        repository.save(dataList);
 
         System.out.println(dataList);
 

@@ -23,12 +23,14 @@ public class DataProcessingApplication {
 
 		ProcessedData data = new ProcessedData();
 		data.setMessage("asdasd");
+		data.setId("1231232");
+		data.setSex("F");
 
 
 
 		return args->{
 
-			for(int i = 0; i <50; i++){
+			for(int i = 0; i <2; i++){
 
 
 				kafkaTemplate.send("proccesedData", data);

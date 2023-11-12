@@ -11,15 +11,15 @@ import lombok.ToString;
 @Document("processedData")
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @ToString
 public class ProcessedData {
     @Id
     private String id;
 
-    @NonNull
+    // @NonNull
     private String message;
 
-    @NonNull
+    // @NonNull
     private String sex;
 }
