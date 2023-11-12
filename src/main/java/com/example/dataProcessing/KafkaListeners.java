@@ -1,6 +1,9 @@
 package com.example.dataProcessing;
 
+import java.util.List;
+
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import com.example.dataProcessing.model.ProcessedData;
@@ -11,19 +14,16 @@ public class KafkaListeners {
 
     private DataRepository repository;
     
-    public KafkaListeners(DataRepository repository) {
-        this.repository = repository;
-    }
+    // public KafkaListeners(DataRepository repository) {
+    //     this.repository = repository;
+    // }
 
     @KafkaListener(topics = "proccesedData", groupId = "proccesed_Data")
-    void listener(String data){
+    void listener(@Payload List<ProcessedData> dataList){
 
-        ProcessedData obj = new ProcessedData();
-        obj.setMessage(data);
+        // repository.save(dataList);
 
-        repository.save(obj);
-
-        System.out.println(data);
+        System.out.println(dataList);
 
     }
 }

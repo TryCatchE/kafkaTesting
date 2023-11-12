@@ -19,7 +19,7 @@ public class DataProcessingApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner(KafkaTemplate<String,String> kafkaTemplate, DataRepository repository){
+	CommandLineRunner commandLineRunner(KafkaTemplate<String,ProcessedData> kafkaTemplate, DataRepository repository){
 
 		ProcessedData data = new ProcessedData();
 		data.setMessage("asdasd");
@@ -30,7 +30,9 @@ public class DataProcessingApplication {
 
 			for(int i = 0; i <50; i++){
 
-				kafkaTemplate.send("proccesedData","dataaaa");
+
+				kafkaTemplate.send("proccesedData", data);
+
 				// kafkaTemplate.send("proccesedData",repository.findAll().get(1).toString() + i);
 			}
 		};

@@ -6,11 +6,13 @@ import com.mongodb.lang.NonNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Document("processedData")
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
+@ToString
 public class ProcessedData {
     @Id
     private String id;
