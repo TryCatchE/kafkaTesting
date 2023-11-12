@@ -1,5 +1,7 @@
 package com.example.dataProcessing;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,19 +25,17 @@ public class DataProcessingApplication {
 
 		ProcessedData data = new ProcessedData();
 		data.setMessage("asdasd");
-		data.setId("1231232");
+		// data.setId("1231232");
 		data.setSex("F");
 
 
 
 		return args->{
 
-			for(int i = 0; i <2; i++){
-
-
+			while (true) {
 				kafkaTemplate.send("proccesedData", data);
 
-				// kafkaTemplate.send("proccesedData",repository.findAll().get(1).toString() + i);
+				// TimeUnit.SECONDS.sleep(5); 
 			}
 		};
 	}
