@@ -26,14 +26,10 @@ public class DataProcessingApplication {
 
 		ProcessedData data = new ProcessedData();
 		data.setMessage("asdasd");
-		// data.setId("1231232");
-		
-
-
 
 		return args->{
 
-			for(int i =0; i<50; i++){
+			for(int i =0; i<200; i++){
 				data.setSex(new Random().nextBoolean() ? "M" : "F");
 				kafkaTemplate.send("newTopic", data);
 			}

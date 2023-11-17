@@ -12,6 +12,6 @@ public class TodoDto {
 
     private Long females;
     private Long males;
-    private int randomYear = 2016;
+    private int randomYear;
     
 }

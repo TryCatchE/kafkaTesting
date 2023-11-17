@@ -1,5 +1,8 @@
 package com.example.dataProcessing.controller;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,21 +26,33 @@ public class DataController {
     }
 
     @GetMapping("/")
-    public TodoDto test(){
+    public List<TodoDto> getAll(){
         // return repository.findAll();
 
         Long females = repository.countBySexF();
         Long males = repository.countBySexM();
 
-        TodoDto todoDto = new TodoDto();
-        todoDto.setFemales(females);
-        todoDto.setMales(males);
+        List<TodoDto> todoDTOList = new ArrayList<>();
+
+        Random random = new Random();
+        Long randomNumber = random.nextLong();
+
+
+
+        for(int i=0; i <3; i++){
+            TodoDto todoDto = new TodoDto();
+            todoDto.setFemales(females);
+            todoDto.setMales( males );
+            todoDto.setRandomYear(new Random().nextBoolean() ? 2016 : 2017);
+
+            todoDTOList.add(todoDto);
+        }
         
-        return todoDto;
+        return todoDTOList;
     }
 
     @PostMapping("/post")
-    public void  test1(@RequestBody ProcessedData data){
+    public void  postToKafka(@RequestBody ProcessedData data){
 
         // repository.save(data);
         kafkaTemplate.send("proccesedData",data);
@@ -45,7 +60,7 @@ public class DataController {
     }
 
     @GetMapping("/kafka")
-    public void est1(){
+    public void kafkaEndpoint(){
 
         ProcessedData data = new ProcessedData();
         data.setMessage("FROM CONTROLLER");
@@ -55,7 +70,7 @@ public class DataController {
     }
 
     @GetMapping("/deleteAll")
-    public void est(){
+    public void deleteAll(){
 
         repository.deleteAll();
 
