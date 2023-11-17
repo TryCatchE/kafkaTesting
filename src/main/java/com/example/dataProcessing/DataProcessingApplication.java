@@ -1,5 +1,6 @@
 package com.example.dataProcessing;
 
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.CommandLineRunner;
@@ -26,17 +27,22 @@ public class DataProcessingApplication {
 		ProcessedData data = new ProcessedData();
 		data.setMessage("asdasd");
 		// data.setId("1231232");
-		data.setSex("F");
+		
 
 
 
 		return args->{
 
-			while (true) {
-				kafkaTemplate.send("proccesedData", data);
-
-				// TimeUnit.SECONDS.sleep(5); 
+			for(int i =0; i<50; i++){
+				data.setSex(new Random().nextBoolean() ? "M" : "F");
+				kafkaTemplate.send("newTopic", data);
 			}
+
+			// while (true) {
+			// 	
+
+			// 	// TimeUnit.SECONDS.sleep(5); 
+			// }
 		};
 	}
 

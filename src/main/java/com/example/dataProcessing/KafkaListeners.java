@@ -18,7 +18,7 @@ public class KafkaListeners {
         this.repository = repository;
     }
 
-    @KafkaListener(topics = "proccesedData", groupId = "proccesed_Data", containerFactory = "exampleKafkaListenerContainerFactory"  )
+    @KafkaListener(topics = "newTopic", groupId = "proccesed_Data", containerFactory = "exampleKafkaListenerContainerFactory"  )
     void listener(@Payload ProcessedData dataList){
 
         repository.save(dataList);

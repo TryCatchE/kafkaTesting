@@ -11,6 +11,6 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic processedData(){
-        return TopicBuilder.name("proccesedData").build();
+        return TopicBuilder.name("newTopic").build();
     }
 }

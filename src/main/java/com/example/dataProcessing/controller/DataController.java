@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.dataProcessing.model.ProcessedData;
+import com.example.dataProcessing.model.TodoDto;
 import com.example.dataProcessing.repository.DataRepository;
 
 @RestController
@@ -22,8 +23,17 @@ public class DataController {
     }
 
     @GetMapping("/")
-    public List<ProcessedData> test(){
-        return repository.findAll();
+    public TodoDto test(){
+        // return repository.findAll();
+
+        Long females = repository.countBySexF();
+        Long males = repository.countBySexM();
+
+        TodoDto todoDto = new TodoDto();
+        todoDto.setFemales(females);
+        todoDto.setMales(males);
+        
+        return todoDto;
     }
 
     @PostMapping("/post")
